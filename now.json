@@ -1,0 +1,8 @@
+{
+  "alias": [
+    "forms"
+  ],
+  "env": {
+    "FORMS_FIREBASE_CONFIG": "@forms-firebase-config"
+  }
+}
