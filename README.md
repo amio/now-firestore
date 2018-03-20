@@ -1,5 +1,7 @@
 # Now & Firestore
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/amio/now-firestore.svg)](https://greenkeeper.io/)
+
 Dev template for Now + Firestore service
 
 ## 开发环境
