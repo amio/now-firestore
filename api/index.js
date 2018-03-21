@@ -4,8 +4,9 @@ const cors = require('micro-cors')
 const forms = require('./forms.js')
 
 const routes = router(
-  get('/api/forms/:fid', forms.list),
-  post('/api/signup', forms.signup)
+  get('/api/forms/:topic', forms.list),
+  post('/api/signup', forms.signup),
+  get('/api/signup/:sid', forms.signupInfo)
 )
 
 module.exports = cors()(routes)

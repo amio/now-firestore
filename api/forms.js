@@ -1,10 +1,11 @@
 const { send, json } = require('micro')
 const firestore = require('./libs/firestore.js')
 
+// list all registered guest for a topic
 const list = async function (req, res) {
-  const { fid } = req.params
+  const { topic } = req.params
   const snapshot = await firestore.collection('signups')
-    .where('topic', '==', fid)
+    .where('topic', '==', topic)
     .get()
 
   const results = snapshot.docs.map(s => {
@@ -14,19 +15,32 @@ const list = async function (req, res) {
   send(res, 200, results)
 }
 
+// post signup form for a topic
 const signup = async function (req, res) {
-  const { topic, data } = await json(req)
+  const { topic, form } = await json(req)
 
-  await firestore.collection('signups').add({
+  const result = await firestore.collection('signups').add({
+    form,
     topic,
-    data,
     createAt: Date.now()
   })
 
-  send(res, 200)
+  send(res, 200, {
+    id: result.id
+  })
+}
+
+// get specific registered guest info
+const signupInfo = async function (req, res) {
+  const { sid } = req.params
+
+  const snapshot = await firestore.collection('signups').doc(sid).get()
+
+  send(res, 200, snapshot.data())
 }
 
 module.exports = {
   list,
-  signup
+  signup,
+  signupInfo
 }
