@@ -5,15 +5,16 @@ import api from '../libs/api.js'
 // import topicWrappers from '../assets/topicWrappers.js'
 
 export default class Index extends React.Component {
-  static async getInitialProps ({ query }) {
+  static async getInitialProps ({ query, req }) {
     const { id } = query
-    const { topic, form } = (await api.get(`/signup/${id}`)).data
+    const { topic, form } = await api.get(`/signup/${id}`, {
+      baseURL: req ? 'http://localhost:3000/api' : '/api'
+    }).then(
+      res => res.data,
+      err => console.error(err) || {}
+    )
 
-    return {
-      id,
-      topic,
-      form
-    }
+    return { id, form, topic }
   }
 
   state = {

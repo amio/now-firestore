@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "build": "API_URL=https://forms.hicto.tech next build web",
     "start": "NODE_ENV=production node index.js",
-    "deploy": "npm run build && now -T hicto && now alias -T hicto"
+    "deploy": "now -T hicto && now alias -T hicto"
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.13.0",
