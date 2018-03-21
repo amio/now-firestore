@@ -8,16 +8,17 @@
   "scripts": {
     "dev": "node index.js",
     "dev:api": "micro-dev api",
-    "dev:web": "API_HOST=https://forms.hicto.tech next web",
+    "dev:web": "API_URL=https://forms.hicto.tech next web",
     "test:api": "tape api/tests/*.js",
     "lint": "eslint .",
-    "build": "next build web",
+    "build": "API_URL=https://forms.hicto.tech next build web",
     "start": "NODE_ENV=production node index.js",
     "deploy": "npm run build && now -T hicto && now alias -T hicto"
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.13.0",
     "axios": "^0.18.0",
+    "htmlescape": "^1.1.1",
     "material-ui": "^1.0.0-beta.38",
     "material-ui-icons": "^1.0.0-beta.36",
     "micro": "^9.1.4",

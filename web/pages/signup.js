@@ -1,7 +1,9 @@
 import React from 'react'
+import Router from 'next/router'
 import Button from 'material-ui/Button'
 import Layout from '../components/layout.js'
 import Field from '../components/field.js'
+import api from '../libs/api.js'
 
 import topics from '../assets/topics.json'
 // import topicWrappers from '../assets/topicWrappers.js'
@@ -14,15 +16,31 @@ export default class Index extends React.Component {
     }
   }
 
-  state = {}
+  state = {
+    form: {}
+  }
 
   onChange = ({key, value}) => {
-    this.setState({[key]: value})
+    // set form value to `this.state.form`
+    this.setState(state => {
+      state.form[key] = value
+      return state
+    })
   }
 
   onSubmit = (e) => {
-    console.log(this.state)
     e.preventDefault()
+
+    const { topic } = Router.query
+    const { form } = this.state
+
+    api.post('/signup', { topic, form }).then(res => {
+      const { id } = res.data
+      Router.push({
+        pathname: '/thanks',
+        query: { id }
+      })
+    })
   }
 
   render () {
