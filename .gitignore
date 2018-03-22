@@ -1,0 +1,5 @@
+node_modules
+web/.next
+*key.json
+*.log
+.idea
