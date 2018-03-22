@@ -33,6 +33,15 @@ export default class Index extends React.Component {
 
     const { topic } = Router.query
     const { form } = this.state
+    const { fields } = this.props
+
+    // validate
+    const hasEmptyField = fields.find(f => {
+      return f.required && !form[f.field]
+    })
+    if (hasEmptyField) {
+      return alert(`请填写「${hasEmptyField.label}」`)
+    }
 
     api.post('/signup', { topic, form }).then(res => {
       const { id } = res.data
