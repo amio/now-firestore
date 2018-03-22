@@ -2,7 +2,8 @@
   "eiyo": [
     { "field": "name", "label": "姓名", "type": "text", "required": true },
     { "field": "title", "label": "职位", "type": "text", "required": true },
+    { "field": "phone", "label": "电话", "type": "number", "required": true },
     { "field": "company", "label": "公司", "type": "text", "required": true },
-    { "field": "phone", "label": "电话", "type": "number", "required": true }
+    { "field": "stage", "label": "融资阶段", "type": "stage", "required": true }
   ]
 }

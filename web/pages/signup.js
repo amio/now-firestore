@@ -63,7 +63,11 @@ export default class Index extends React.Component {
         </div>
         <form onSubmit={this.onSubmit}>
           { fields.map(f => (
-            <Field key={f.field} {...f} onChange={this.onChange} />
+            <Field
+              {...f}
+              key={f.field}
+              value={this.state.form[f.field] || ''}
+              onChange={this.onChange} />
           )) }
           <div className='submit'>
             <Button variant='raised' color='primary' type='submit'>提交</Button>
